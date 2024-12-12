@@ -12,12 +12,21 @@ Things to implement:
     different kinds of fruits w/ different abilities (speed, idk what else lol)
     obstacles, and maybe a smaller grid
     put speed as a thing into the snake object, instead of increasing fps
+    one thing for graphics -- maybe make the snake a bunch of circles instead of squares. Could
+    also make it omnidirectional instead of moving on a grid. Could be difficult, but we'll see. I did this one.
+
+    Basically, how the movement was supposed to work was that you call the head segment to make a move, then after it finishes,
+    it calls the next one, and that goes down and down. Unfortunately, idek how to do that. So, figure that out. Maybe
+    it's simiilar to what I have? Like a little queue, where it does the current move, then when a new one is put on, it does that after.
+    That seems to be the right idea. 
 
     most of all, I want to figure out a way to make this all structured better. Idk, doing gamewindow.snake.head.rect is a little insane.
     So yeah, just optimization and cleanliness. 
 
     But, honestly, none of that seems too difficult now. Yeah. 
 
+I have a bug. For some reason, if you're going down, and you turn to the right and get a fruit, you lose. 
+Why? I have no idea. It's a problem with snake_hit, apparently it returns true. Idk why.
 '''
 
 from snake_misc import *

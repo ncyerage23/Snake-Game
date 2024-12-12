@@ -35,6 +35,7 @@ class GameWindow(pygame.Surface):
             lose = True
         
         if self.snake.snake_hit():
+            print('hi?')
             lose = True
 
         self.fill(GW_COLOR)
@@ -145,6 +146,9 @@ class Snake:
             return False
 
         current = self.head.next.next
+
+        if current and current.start == False:
+            return False
 
         while current:
             if self.head.rect.colliderect(current.rect):
