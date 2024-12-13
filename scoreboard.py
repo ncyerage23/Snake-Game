@@ -15,11 +15,13 @@ class Scoreboard(pygame.Surface):
     def update_sb(self, time, p1, p2):
         self.fill((SB_COLOR))
 
+        #add something for when there's effects on a snake (also do this in snake.py, but that's later)
+
         #making the text
         timer = self.font.render(f'Time: {time}', True, TEXT_COLOR)
 
-        p1_text = self.font2.render(f'P1:  fruit: {p1[0]} length: {p1[1]}', True, TEXT_COLOR)
-        p2_text = self.font2.render(f'P2:  fruit: {p2[0]}, length: {p2[1]}', True, TEXT_COLOR)
+        p1_text = self.font2.render(f'P1:  length: {p1[1]}', True, TEXT_COLOR)
+        p2_text = self.font2.render(f'P2:  length: {p2[1]}', True, TEXT_COLOR)
 
         #getting the rects
         timer_rect = timer.get_rect()

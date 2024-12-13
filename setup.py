@@ -14,7 +14,8 @@ from pygame.locals import (
     K_ESCAPE,
     KEYDOWN,
     QUIT,
-    K_p
+    K_p,
+    K_SPACE
 )
 
 import random
@@ -35,11 +36,11 @@ BLUE = (0, 0, 255)
 FPS = 60
 
 SB_HEIGHT = 50
-GW_HEIGHT = 650
+GW_HEIGHT = 640
 
 WIN_OFFSET = 25
 
-SB_WIDTH = 1200
+SB_WIDTH = 1120
 GW_WIDTH = SB_WIDTH
 
 WIN_HEIGHT = SB_HEIGHT + GW_HEIGHT + WIN_OFFSET
@@ -51,13 +52,48 @@ TEXT_COLOR = (218, 242, 0)
 #Scoreboard stuff
 SB_COLOR = WIN_COLOR
 
-
 #Gamewindow stuff
 GW_COLOR = (4, 130, 8)
+
+    #i think this is better, maybe (lol)
+    #i could def come up with a better way though, that's way later
+GW_GRID_X = 28
+GW_GRID_Y = 16
+
+GW_GRID_STEP = GW_HEIGHT / GW_GRID_Y
+GW_GRID_MID = GW_GRID_STEP / 2
 
 #Popup Window stuff
 POP_COLOR = WIN_COLOR
 
 #Snake stuff
-SNAKE1_COLOR = (67, 67, 168)
-SNAKE2_COLOR = (255, 187, 0)
+P1_COLOR = (67, 67, 168)
+P2_COLOR = (255, 187, 0)
+
+SNAKE_START_SPEED = 1
+SNAKE_RAD = GW_GRID_MID - 5
+
+DIRECTIONS = {
+    K_RIGHT: (1, 0),
+    K_LEFT: (-1, 0),
+    K_DOWN: (0, 1),
+    K_UP: (0, -1)
+}
+
+#Fruit stuff
+
+#Obstacle stuff
+
+
+#grid stuff (grid to literal coords, literal to grid coords) (like old methods)
+def toCoord(coord):
+    out = []
+    for c in coord:
+        out.append(GW_GRID_STEP * c + GW_GRID_MID)
+    return out
+
+def fromCoord(coord):
+    out = []
+    for c in coord:
+        out.append((c - GW_GRID_MID) / GW_GRID_STEP)
+    return out
