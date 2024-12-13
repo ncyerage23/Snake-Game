@@ -22,7 +22,6 @@ import random
 pygame.display.init()
 pygame.font.init()
 
-
 #Constants
 
 #Colors
@@ -47,14 +46,17 @@ WIN_HEIGHT = SB_HEIGHT + GW_HEIGHT + WIN_OFFSET
 WIN_WIDTH = GW_WIDTH + 2 * (WIN_OFFSET)
 
 WIN_COLOR = (125, 73, 21)
+TEXT_COLOR = (218, 242, 0)
 
 #Scoreboard stuff
 SB_COLOR = WIN_COLOR
-SB_TEXT_COLOR = (218, 242, 0)
+
 
 #Gamewindow stuff
 GW_COLOR = (4, 130, 8)
 
+#Popup Window stuff
+POP_COLOR = WIN_COLOR
 
 #Snake stuff
 SNAKE1_COLOR = (67, 67, 168)
