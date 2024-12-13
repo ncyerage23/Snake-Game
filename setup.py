@@ -23,45 +23,39 @@ pygame.display.init()
 pygame.font.init()
 
 
-#below stuff will be redone
+#Constants
 
-GW_SIZE = 500
-GRID_SIZE = GW_SIZE / 10
-GRID_MID = GRID_SIZE / 2
+#Colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+
+#Overall stuff
+FPS = 60
+
 SB_HEIGHT = 50
+GW_HEIGHT = 650
 
-SNAKE_COLOR = (0,255,0)
-GW_COLOR = (79, 60, 34)
-FOOD_COLOR = (255,0,0)
-SB_COLOR = (116, 204, 116)
+WIN_OFFSET = 25
 
-SB_COLOR = (49, 145, 49)
-SB_TEXT_COLOR = (255, 255, 255)
+SB_WIDTH = 1200
+GW_WIDTH = SB_WIDTH
 
-SEGMENT_SIZE = GRID_SIZE
-STEP_SIZE = 1
+WIN_HEIGHT = SB_HEIGHT + GW_HEIGHT + WIN_OFFSET
+WIN_WIDTH = GW_WIDTH + 2 * (WIN_OFFSET)
 
-DIRECTIONS = {
-    K_RIGHT: (STEP_SIZE, 0),
-    K_LEFT: (-STEP_SIZE, 0),
-    K_DOWN: (0, STEP_SIZE),
-    K_UP: (0, -STEP_SIZE)
-}
+WIN_COLOR = (125, 73, 21)
 
-LEGAL_MOVES = {
-    K_RIGHT: (K_DOWN, K_UP),
-    K_LEFT: (K_UP, K_DOWN),
-    K_DOWN: (K_RIGHT, K_LEFT),
-    K_UP: (K_RIGHT, K_LEFT)
-}
+#Scoreboard stuff
+SB_COLOR = WIN_COLOR
+SB_TEXT_COLOR = (218, 242, 0)
+
+#Gamewindow stuff
+GW_COLOR = (4, 130, 8)
 
 
-def coord(x, y):
-    newX = GRID_SIZE * x + GRID_MID
-    newY = GRID_SIZE * y + GRID_MID
-    return newX, newY
-
-def backCoord(x, y):
-    newX = (x - GRID_MID) / GRID_SIZE
-    newY = (y - GRID_MID) / GRID_SIZE
-    return newX, newY
+#Snake stuff
+SNAKE1_COLOR = (67, 67, 168)
+SNAKE2_COLOR = (255, 187, 0)
