@@ -6,30 +6,53 @@ File for snakes & stuff
 from setup import *
 
 
-#this time, imma make the segments as circles
-#they're still gonna operate on the grid, but you know.
-#also speed increases here, not with fps lol
-
-#instead of how I did it before, make it like this:
-#have snake hold a list of segments and a separate list of functions
-#every update adds a new thing to the list of functions, and removes the back of it
-#then we go down the line of segments and call the function on that segment
-#this is definitely way better, lol
-#be sure to draw from back to front
-#only allowed to change direction on a grid spot
-
-#i could draw circles over and over from back to front???
-#idk though.
-
-
 '''
-instead of doing segments, I could mark the head and tail and any turns?
-idk if that would even work though. 
+I'm going to come back to snakes. Idk. It's such a pain in the ass.
+I think I'll keep the way I've been doing it (sorta), where I just move
+each segment to the place where the previous one was, then move that one
 
-yeah, before moving forward, I need to decide how this'll be done. 
-maybe mark each head, tail, and turn, and then draw circles to connect? 
-but how would I detect collision? 
+But, I'm gonna bring back the segment class with all the collidereact stuff, I think.
+Idk, later. I'm done w this, lol. 
 '''
+
+
+
+class Snake2:
+    def __init__(self, coords, color, start_dir):
+        self.body = [toCoord(coords)]
+        self.color = color
+        self.speed = 2
+        self.direction = start_dir
+        self.length = 100
+        self.head = self.body[0]
+    
+    def update_snake(self, dir=None):
+        if dir:
+            self.direction = dir
+        
+        head_coord = self.body[0]
+        x, y = DIRECTIONS[self.direction]
+        newX, newY = head_coord[0] + x*self.speed, head_coord[1] + y*self.speed
+        self.body.insert(0, (newX, newY))
+
+        if len(self.body) > self.length:
+            self.body = self.body[:self.length]
+        
+        self.head = self.body[0]
+        
+    def draw(self, screen):
+        for seg in self.body:
+            pygame.draw.circle(screen, self.color, seg, SNAKE_RAD)
+    
+    def bounds(self):
+        if self.head[0] < 0 or self.head[0] > GW_WIDTH or self.head[1] < 0 or self.head[1] > GW_HEIGHT:
+            return False
+        else:
+            return True
+        
+
+
+
 
 
 class Segment(pygame.sprite.Sprite):
@@ -45,7 +68,6 @@ class Segment(pygame.sprite.Sprite):
     
     def move(self, dir, speed):
         x, y = DIRECTIONS[dir]
-        print(dir == K_LEFT)
         self.rect.move_ip(speed * x, speed * y)
 
 

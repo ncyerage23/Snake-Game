@@ -21,9 +21,12 @@ screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 pygame.display.set_caption('Snake!')
 clock = pygame.time.Clock()
 
+def gameOver():
+    global mode
+    mode = states[1]
 
 scoreboard = sb.Scoreboard()
-gamewindow = gw.GameWindow()
+gamewindow = gw.GameWindow(gameOver)
 
 states = ['PLAYING', 'WIN', 'PAUSE', 'SETUP']
 mode = states[3]
@@ -40,6 +43,9 @@ mini_time = 0
 
 running = True
 while running:
+    p1_key = None
+    p2_key = None
+
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
@@ -48,6 +54,12 @@ while running:
             if event.key == K_SPACE and mode == states[3]:
                 mode = states[0]
                 #maybe make a countdown (later)
+            
+            elif (event.key == K_UP or event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT) and mode == states[0]:
+                p2_key = event.key
+            
+            elif (event.key == K_w or event.key == K_a or event.key == K_s or event.key == K_d) and mode == states[0]:
+                p1_key = event.key
 
             #maybe make it so if p1 pauses, only he resumes and v.v. (later)
             elif event.key == K_p or event.key == K_ESCAPE:
@@ -63,7 +75,7 @@ while running:
 
         scoreboard.update_sb(timer, (0,0), (0,0))
         
-        gamewindow.update_gw()
+        gamewindow.update_gw(p1_key, p2_key)
 
         screen.blit(scoreboard, (WIN_OFFSET,0))
         screen.blit(gamewindow, (WIN_OFFSET, SB_HEIGHT))

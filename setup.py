@@ -15,7 +15,11 @@ from pygame.locals import (
     KEYDOWN,
     QUIT,
     K_p,
-    K_SPACE
+    K_SPACE,
+    K_w,
+    K_a,
+    K_s,
+    K_d
 )
 
 import random
@@ -77,7 +81,11 @@ DIRECTIONS = {
     K_RIGHT: (1, 0),
     K_LEFT: (-1, 0),
     K_DOWN: (0, 1),
-    K_UP: (0, -1)
+    K_UP: (0, -1),
+    K_d: (1, 0),
+    K_a: (-1, 0),
+    K_s: (0, 1), 
+    K_w: (0, -1)
 }
 
 #Fruit stuff
