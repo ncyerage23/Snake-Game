@@ -16,12 +16,14 @@ class Scoreboard(pygame.Surface):
         self.fill((SB_COLOR))
 
         #add something for when there's effects on a snake (also do this in snake.py, but that's later)
+        #like some sorta icon, idk
 
         #making the text
         timer = self.font.render(f'Time: {time}', True, TEXT_COLOR)
 
-        p1_text = self.font2.render(f'P1:  length: {p1[1]}', True, TEXT_COLOR)
-        p2_text = self.font2.render(f'P2:  length: {p2[1]}', True, TEXT_COLOR)
+            #add more stuff here l8r
+        p1_text = self.font2.render(f'P1:  length: {p1[0]}', True, TEXT_COLOR)
+        p2_text = self.font2.render(f'P2:  length: {p2[0]}', True, TEXT_COLOR)
 
         #getting the rects
         timer_rect = timer.get_rect()

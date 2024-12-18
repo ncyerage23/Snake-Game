@@ -88,10 +88,24 @@ DIRECTIONS = {
     K_w: (0, -1)
 }
 
+LEGAL_MOVES_P1 = {
+    K_d: (K_s, K_w),
+    K_a: (K_s, K_w),
+    K_s: (K_d, K_a),
+    K_w: (K_d, K_a)
+}
+
+LEGAL_MOVES_P2 = {
+    K_RIGHT: (K_DOWN, K_UP),
+    K_LEFT: (K_UP, K_DOWN),
+    K_DOWN: (K_RIGHT, K_LEFT),
+    K_UP: (K_RIGHT, K_LEFT)
+}
+
 #Fruit stuff
 
 #Obstacle stuff
-
+ROCK_COUNT = 10
 
 #grid stuff (grid to literal coords, literal to grid coords) (like old methods)
 def toCoord(coord):

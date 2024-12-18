@@ -3,6 +3,10 @@ Snake Game by: Nathaniel Yerage
 File for popup windows of game (paused, starting, p1 wins, p2 wins, etc)
 '''
 
+'''
+need to make a winscreen or something, saying how the game ended
+'''
+
 from setup import *
 
 #maybe make popscreen have its own "geometry manager," instead of doing the whole thing I've been doing, lol
@@ -51,7 +55,7 @@ class PauseScreen(PopScreen):
     def __init__(self, screen):
         super().__init__(screen)
 
-        rows = ['The game is paused', 'Press (p) or (esc) to resume']
+        rows = ['The game is paused', 'Press (p) or (esc) to resume', 'Or press (SPACE) to exit']
         self.put_rows(rows)
 
         self.draw()
@@ -60,4 +64,9 @@ class PauseScreen(PopScreen):
 #make this later, lol
 class WinScreen(PopScreen):
     def __init__(self, screen):
-        pass
+        super().__init__(screen)
+
+        rows = ['Game Ended!!!!', '', "I can't believe y'all suck this bad", "Press (SPACE) to restart!"]
+        self.put_rows(rows)
+
+        self.draw()
