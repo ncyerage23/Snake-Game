@@ -23,6 +23,7 @@ from pygame.locals import (
 )
 
 import random
+import math
 
 pygame.display.init()
 pygame.font.init()
@@ -105,17 +106,30 @@ LEGAL_MOVES_P2 = {
 #Fruit stuff
 
 #Obstacle stuff
-ROCK_COUNT = 10
+WALL_COLOR = (10, 74, 20)
+WALL_WIDTH = 20
+
 
 #grid stuff (grid to literal coords, literal to grid coords) (like old methods)
 def toCoord(coord):
     out = []
     for c in coord:
-        out.append(GW_GRID_STEP * c + GW_GRID_MID)
+        out.append(int(GW_GRID_STEP * c + GW_GRID_MID))
     return out
 
 def fromCoord(coord):
     out = []
     for c in coord:
-        out.append((c - GW_GRID_MID) / GW_GRID_STEP)
+        out.append(int((c - GW_GRID_MID) // GW_GRID_STEP))
     return out
+
+def wall_toCoord(coord):
+    out = []
+    for c in coord:
+        out.append(int(GW_GRID_STEP * c + GW_GRID_STEP))
+    return out
+
+def wall_fromCoord(coord):
+    out = []
+    for c in coord:
+        out.append(int((c - GW_GRID_STEP) // GW_GRID_STEP))

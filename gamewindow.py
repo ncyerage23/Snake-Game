@@ -16,7 +16,7 @@ class GameWindow(pygame.Surface):
         self.p1 = snakes.Snake((0,1), K_d, P1_COLOR)
         self.p2 = snakes.Snake((GW_GRID_X - 1, GW_GRID_Y - 2), K_LEFT, P2_COLOR)
 
-        self.obstacles = {'ROCKS': []}
+        self.obstacles = []
         self.set_obstacles()
     
     @property
@@ -27,18 +27,20 @@ class GameWindow(pygame.Surface):
     def p2_len(self):
         return self.p2.length
 
-    #this is good for now, but I need to fix it down the line
-    #random is potentially bad, tbh. 
-    #maybe have set places or something, idk. 
     def set_obstacles(self):
-        used_coords = []
+        self.obstacles.append(ob.Wall((2,3), (8,3)))
+        self.obstacles.append(ob.Wall((4,3), (4,6)))
 
-        count = 0
-        while count < ROCK_COUNT:
-            x, y = random.randint(0, GW_GRID_X), random.randint(0, GW_GRID_Y)
-            if (x, y) not in used_coords or (x in range(0, 2) and y in range(0, 2)) or (x in range(GW_GRID_X - 2, GW_GRID_X) and y in range(GW_GRID_Y - 2, GW_GRID_Y)) or x < 2 or x > GW_GRID_X - 2 or y < 2 or y > GW_GRID_Y - 2:
-                self.obstacles['ROCKS'].append(ob.Rock((x, y)))
-                count += 1
+        self.obstacles.append(ob.Wall((17,-1), (17,9)))
+        self.obstacles.append(ob.Wall((16,6), (19,6)))
+        self.obstacles.append(ob.Wall((14,3), (20,3)))
+
+        self.obstacles.append(ob.Wall((2,10), (2,16)))
+
+        self.obstacles.append(ob.Wall((8,12), (14,12)))
+        self.obstacles.append(ob.Wall((8,13), (14,13)))
+        self.obstacles.append(ob.Wall((8,12), (8,13)))
+        self.obstacles.append(ob.Wall((14,12), (14,13)))
                 
             
     
@@ -49,6 +51,7 @@ class GameWindow(pygame.Surface):
         a, b = self.p1.getInfo(), self.p2.getInfo()
         c = False
 
+        #checking for collisions between snakes
         p1_curr = self.p1.head
         while p1_curr:
             p2_curr = self.p2.head
@@ -58,6 +61,15 @@ class GameWindow(pygame.Surface):
                 p2_curr = p2_curr.next
             p1_curr = p1_curr.next
         
+        #bush/wall collision
+        for obs in self.obstacles:
+            if self.p1.head.rect.colliderect(obs.rect):
+                c = True
+            
+            if self.p2.head.rect.colliderect(obs.rect):
+                c = True
+
+
         return a, b, c
 
     def draw_lines(self):
@@ -77,8 +89,8 @@ class GameWindow(pygame.Surface):
         self.p1.draw(self)
         self.p2.draw(self)
 
-        for rock in self.obstacles['ROCKS']:
-            self.blit(rock.surf, rock.rect)
+        for obs in self.obstacles:
+            obs.draw(self)
 
         screen.blit(self, (WIN_OFFSET, SB_HEIGHT))
 

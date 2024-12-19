@@ -11,7 +11,17 @@ Things to add later:
     show effects of snake on the snake (idk, little effects over top lol)
     texture for snake head
     maybe make globals (across the whole program) for time and screen and clock, idk. Might be simpler
-    give the grass a texture, and maybe the scoreboard / border. Maybe draw it all myself
+    give the grass a texture, and maybe the scoreboard / border. Maybe draw it all myself, lol.
+    randomly generated map, maybe even bigger? idk. 
+    Make map generate based on text files, or have a smarter way of random generation. Not sure yet, though. 
+    Based on "structures"? Like, a cluster in this formation, etc. Idk. Rooms?
+    
+Probably don't:
+    Maybe, just maybe, make a thing for the graphics so its easier to build maps and stuff. Idk. That would be insane,
+    but it would help a lot. Could output to a text file, then the game reads the file???
+    Could also make the map as a text file w # as bush, characters as other stuff, etc. Could make generation simpler. 
+    Yeah, I could definitely do that. 
+    
 '''
 
 from setup import *
@@ -57,6 +67,8 @@ while running:
                 gamewindow = gw.GameWindow()
                 scoreboard = sb.Scoreboard()
                 mode = states[0]
+                timer = 0
+                mini_time = 0
             
 
             elif event.key in LEGAL_MOVES_P1[gamewindow.p1.direction] and mode == states[0]:
